@@ -1,34 +1,17 @@
 // Clase padre
 class Vehiculo {
-  // Atributo privado
-  #anio;
-
   constructor(marca, modelo, anio) {
     this.marca = marca;
     this.modelo = modelo;
-    this.setAño(anio); // usar setter
+    this.anio = anio;
   }
 
   describir() {
-    return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.#anio}`;
+    return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.anio}`;
   }
 
   calcularAntiguedad() {
-    return 2025 - this.#anio;
-  }
-
-  // Getter
-  getAño() {
-    return this.#anio;
-  }
-
-  // Setter
-  setAño(valor) {
-    if (valor >= 1900 && valor <= 2025) {
-      this.#anio = valor;
-    } else {
-      throw new Error("Año invalido");
-    }
+    return 2025 - this.anio;
   }
 }
 
@@ -74,21 +57,3 @@ console.log("Antigüedad:", camion1.calcularAntiguedad(), "años");
 // Método nuevo de Camion
 console.log("¿Puede transportar 15 toneladas?", camion1.puedeTransportar(15));
 console.log("¿Puede transportar 25 toneladas?", camion1.puedeTransportar(25));
-
-// Probar getter
-console.log("Año de la moto:", moto1.getAño());
-
-// Probar setter con valor válido
-try {
-  moto1.setAño(2024);
-  console.log("Nuevo año:", moto1.getAño());
-} catch (error) {
-  console.log(error.message);
-}
-
-// Probar setter con valor inválido
-try {
-  moto1.setAño(1800);
-} catch (error) {
-  console.log("Error:", error.message);
-}
